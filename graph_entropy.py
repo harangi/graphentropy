@@ -254,12 +254,11 @@ class GraphEntropy:
             #print("{} forced zeros in r".format(self.forced_zeros()))
             
     def re_activate(self,re_act):
-        eps=1./(1024*len(re_act)*self.nr_y)
+        eps=1./(1024*len(re_act))
         self.active_sets=np.concatenate((self.active_sets, re_act))
         for j in re_act:
             self.sets=np.vstack([self.sets, self.or_sets[j]])
-            #one may use eps*t instead
-            self.r=np.append(self.r,np.full((1,self.nr_y),eps) if self.cond else np.full((1,),eps),axis=0)
+            self.r=np.append(self.r,eps*self.check_set(self.or_sets[j])[1],axis=0) if self.cond else np.append(self.r, np.array([eps]))
         self.nr_j=self.sets.shape[0]
         self.update_r_mask()        
         self.r=self.r/self.r.sum(axis=0)
@@ -271,10 +270,10 @@ class GraphEntropy:
         ga=self.px[mask]/self.a[mask]
         al=np.transpose(self.pyx[mask,:])
         spo=SumProductOptimizer(ga,al,self.py)
-        return spo.find_max()[0]
+        return spo.find_max()
 
     def opt_check(self):
-        des=np.array([self.check_set(s) for s in self.or_sets]) if self.cond else np.dot(self.or_sets,self.px/self.a)
+        des=np.array([self.check_set(s)[0] for s in self.or_sets]) if self.cond else np.dot(self.or_sets,self.px/self.a)
         des=des-1
         re_act=[j for j, de in enumerate(des) if de>0 and j not in self.active_sets]
         return np.amax(des),re_act
