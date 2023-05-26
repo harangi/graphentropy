@@ -259,7 +259,7 @@ class GraphEntropy:
         for j in re_act:
             self.sets=np.vstack([self.sets, self.or_sets[j]])
             #one may use eps*t instead
-            self.r=np.vstack([self.r,np.full((self.nr_y,),eps)])
+            self.r=np.append(self.r,np.full((1,self.nr_y),eps) if self.cond else np.full((1,),eps),axis=0)
         self.nr_j=self.sets.shape[0]
         self.update_r_mask()        
         self.r=self.r/self.r.sum(axis=0)
