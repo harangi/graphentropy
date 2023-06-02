@@ -318,8 +318,12 @@ class GraphEntropy:
         print()
 
     def print_sets(self, only_active=True):
-        print("sets (rows):")
-        print(self.sets if only_active else self.or_sets)
+        if only_active:
+            print("{} active sets (rows):".format(len(self.sets)))
+            print(self.sets)
+        else
+            print("{} sets (rows):".format(len(self.or_sets)))
+            print(self.or_sets)
         print()
         
     def print_distr(self):
@@ -332,9 +336,9 @@ class GraphEntropy:
         print()
         
     def print_r(self):
-        print("Weights of independent sets:")
+        print("{} active sets (and their r values):".format(len(self.sets)))
         for j in range(self.nr_j):
-            print("#{}: {}".format(self.active_sets[j],self.sets[j]))
+            print(self.sets[j])
             print(self.r[j])
         print()
 
