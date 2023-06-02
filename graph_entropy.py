@@ -234,8 +234,8 @@ class GraphEntropy:
             if self.eps_active>0:
                 self.nullify()
         if self.verbose_mode:
-            print("{} iterations made (max: {}). Current value:".format(self.steps,self.steps_max))
-            print(new_val)
+            print("{} iterations made (max: {})".format(self.steps,self.steps_max))
+            #print("Current value: {}".format(new_val))
             
     def nullify(self):
         s=((self.r.sum(axis=1) if self.cond else self.r) > self.eps_active)
@@ -317,10 +317,12 @@ class GraphEntropy:
         print(self.a)
         print()
 
-    def print_param(self):
-        print("Set system:")
-        print(self.sets)
+    def print_sets(self, only_active=True):
+        print("sets (rows):")
+        print(self.sets if only_active else self.or_sets)
         print()
+        
+    def print_distr(self)
         if self.cond:
             print("Joint distribution of (X,Y):")
             print(self.p)
