@@ -321,7 +321,7 @@ class GraphEntropy:
         if only_active:
             print("{} active sets (rows):".format(len(self.sets)))
             print(self.sets)
-        else
+        else:
             print("{} sets (rows):".format(len(self.or_sets)))
             print(self.or_sets)
         print()
