@@ -322,7 +322,7 @@ class GraphEntropy:
         print(self.sets if only_active else self.or_sets)
         print()
         
-    def print_distr(self)
+    def print_distr(self):
         if self.cond:
             print("Joint distribution of (X,Y):")
             print(self.p)
