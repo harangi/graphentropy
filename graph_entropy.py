@@ -317,7 +317,7 @@ class GraphEntropy:
         print(self.a)
         print()
 
-    def print_sets(self, only_active=True):
+    def print_sets(self, only_active=False):
         if only_active:
             print("{} active sets (rows):".format(len(self.sets)))
             print(self.sets)
