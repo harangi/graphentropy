@@ -12,7 +12,7 @@ def grid(nr_x,nr_y):
 def ge_visualize(ge,show_bool=True,grid_bool=True,bars_bool=True,entr_bool=True,use_amax=True):
     a=ge.a
     amax=np.max(a) if use_amax else 1.
-    r=ge.r.sum(axis=1) if ge.cond else ge.r
+    r=np.inner(ge.r,ge.py) if ge.cond else ge.r
     sets=ge.sets
     nr_x=ge.nr_x
     nr_j=ge.nr_j
