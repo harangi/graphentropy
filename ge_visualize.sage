@@ -76,7 +76,7 @@ def ge_visualize(ge,show_bool=True,grid_bool=True,bars_bool=True,entr_bool=True,
 def plot_precision(errors,color='blue',step_size=1):
     ps=min(20,ceil(500./len(errors)))
     precs=[-log(err)/log(10.) for err in errors]
-    steps=[*range(0,step_size*len(errors),step_size)]
+    steps=[*range(step_size,step_size*(1+len(errors)),step_size)]
     pts=list(zip(steps,precs))
     return list_plot(pts,color=color,pointsize=ps)
 
