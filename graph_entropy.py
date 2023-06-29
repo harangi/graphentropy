@@ -123,7 +123,7 @@ class GraphEntropy:
         self.nr_j=self.or_sets.shape[0]
         self.sets=self.or_sets
         self.active_sets=np.arange(self.nr_j)
-        if hasattr(self, 'p'):
+        if hasattr(self, 'px'):
             self.update_r_mask()
 
     def update_r_mask(self):
