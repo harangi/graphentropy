@@ -87,7 +87,7 @@ def error_tracker(ge,true_val,block=1,eps_stop=5e-15,pr_bool=True):
     vals=[]
     errs=[]
     ebs=[]
-    for _ in range(ge.steps_max/block):
+    for _ in range(int(ge.steps_max/block)):
         st+=block
         ge.iter_step(block)
         val=ge.phi_a(ge.a)  #phi_r of previous r
@@ -108,4 +108,4 @@ def error_tracker(ge,true_val,block=1,eps_stop=5e-15,pr_bool=True):
     print("red points:  true precision")
     print("blue points: precision guaranteed by error bound based on the dual problem")
     fig=plot_precision(ebs,'blue',block)+plot_precision(errs,'red',block)
-    fig.show(figsize=[8,4],axes_labels=['steps','precision'],axes=False,frame=True)
+    fig.show(figsize=[8,4],axes_labels=['iterations','precision'],axes=False,frame=True)
