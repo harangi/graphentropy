@@ -19,7 +19,8 @@ def ge_visualize(ge,show_bool=True,grid_bool=True,bars_bool=True,entr_bool=True,
     if ~hasattr(ge,'lbl'):
         ge.lbl=lbl_list[:nr_x]
     lbl=ge.lbl    
-    sets_lbl=[''.join([lbl[i] for i in range(nr_x) if s[i]==1]) for s in sets]
+    sets_lbl=[ge.set2str(s) for s in sets]
+    #sets_lbl=[''.join([lbl[i] for i in range(nr_x) if s[i]==1]) for s in sets]
 
     h0=2.
     th=5.
