@@ -16,7 +16,7 @@ def ge_visualize(ge,show_bool=True,grid_bool=True,bars_bool=True,entr_bool=True,
     sets=ge.sets
     nr_x=ge.nr_x
     nr_j=ge.nr_j
-    if ~hasattr(ge,'lbl'):
+    if not hasattr(ge,'lbl'):
         ge.lbl=lbl_list[:nr_x]
     lbl=ge.lbl    
     sets_lbl=[ge.set2str(s) for s in sets]
