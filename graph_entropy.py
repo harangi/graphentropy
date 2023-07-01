@@ -111,6 +111,7 @@ class GraphEntropy:
     eps_active=0
     #eps_active=2.**-20
     eps_assert=2**-40
+    re_act_factor=1.
 
     def __init__(self,sets):
         assert all( val==0 or val==1 for val in np.nditer(sets)), "0-1 matrix is expected"
@@ -275,8 +276,9 @@ class GraphEntropy:
     def opt_check(self):
         des=np.array([self.check_set(s)[0] for s in self.or_sets]) if self.cond else np.dot(self.or_sets,self.px/self.a)
         des=des-1
-        re_act=[j for j, de in enumerate(des) if de>0 and j not in self.active_sets]
-        return np.amax(des),re_act
+        de_act=np.amax(des[self.active_sets])
+        re_act=[j for j, de in enumerate(des) if de>de_act*self.re_act_factor and j not in self.active_sets]
+        return np.amax(des),de_act,re_act
     
     def alt_opt(self,factor_active=2.**-10):
         #self.sets_reset()
@@ -286,7 +288,7 @@ class GraphEntropy:
 
         self.eps_active=0
         while True:
-            de,re_act=self.opt_check()
+            de,de_act,re_act=self.opt_check()
             if len(re_act)==0:
                 val=self.phi_a(self.a)
                 if self.verbose_mode:
