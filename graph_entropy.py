@@ -329,7 +329,7 @@ class GraphEntropy:
         ss=self.sets if only_active else self.or_sets
         print("{} {}sets:".format(len(ss),"active " if only_active else ""))
         for s in ss:
-            print(set2str(s)+"\n")
+            print(self.set2str(s)+"\n")
         
     def print_distr(self):
         if self.cond:
@@ -343,7 +343,7 @@ class GraphEntropy:
     def print_r(self):
         print("{} active sets (and their r values):".format(len(self.sets)))
         for j in range(self.nr_j):
-            print(set2str(self.sets[j]))
+            print(self.set2str(self.sets[j]))
             print(self.r[j])
         print()
 
