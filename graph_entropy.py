@@ -330,6 +330,7 @@ class GraphEntropy:
         print("{} {}sets:".format(len(ss),"active " if only_active else ""))
         for s in ss:
             print(self.set2str(s))
+        print()
         
     def print_distr(self):
         if self.cond:
