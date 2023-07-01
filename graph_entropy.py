@@ -308,6 +308,12 @@ class GraphEntropy:
         else:
             return -np.dot(self.sets,self.px/self.a)
             
+    def set2str(self,s):
+        if hasattr(self, 'lbl'):
+            return ''.join([self.lbl[i] for i in range(len(s)) if s[i]==1])
+        else:
+            return '{'+','.join([str(i) for i in range(len(s)) if s[i]==1])+'}'
+
     def print_result(self):
         st="conditional " if self.cond else ""
         print(st+"graph entropy:")
@@ -320,13 +326,10 @@ class GraphEntropy:
         print()
 
     def print_sets(self, only_active=False):
-        if only_active:
-            print("{} active sets (rows):".format(len(self.sets)))
-            print(self.sets)
-        else:
-            print("{} sets (rows):".format(len(self.or_sets)))
-            print(self.or_sets)
-        print()
+        ss=self.sets if only_active else self.or_sets
+        print("{} {}sets:".format(len(ss),"active " if only_active else ""))
+        for s in ss:
+            print(set2str(s)+"\n")
         
     def print_distr(self):
         if self.cond:
@@ -340,7 +343,7 @@ class GraphEntropy:
     def print_r(self):
         print("{} active sets (and their r values):".format(len(self.sets)))
         for j in range(self.nr_j):
-            print(self.sets[j])
+            print(set2str(self.sets[j]))
             print(self.r[j])
         print()
 
