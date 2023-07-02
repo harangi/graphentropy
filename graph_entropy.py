@@ -252,7 +252,7 @@ class GraphEntropy:
         if self.verbose_mode:
             nr_d=len(deleted)
             list_d=': '+' '.join([self.set2str(sets[j]) for j in deleted]) if nr_d<11 else ''
-            print("{} set{} deleted after {} iterations".format(nr_d,"s" if nr_d>1 else "",self.steps))
+            print("{} set{} deleted after {} iterations{}".format(nr_d,"s" if nr_d>1 else "",self.steps,list_d))
             #print("{} forced zeros in r".format(self.forced_zeros()))
             
     def re_activate(self,re_act):
