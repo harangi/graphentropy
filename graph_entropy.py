@@ -251,7 +251,7 @@ class GraphEntropy:
         self.r=self.r/self.r.sum(axis=0)
         if self.verbose_mode:
             nr_d=len(deleted)
-            list_d=': '+' '.join([set2str(sets[j]) for j in deleted]) if nr_d<11 else ''
+            list_d=': '+' '.join([self.set2str(sets[j]) for j in deleted]) if nr_d<11 else ''
             print("{} set{} deleted after {} iterations".format(nr_d,"s" if nr_d>1 else "",self.steps))
             #print("{} forced zeros in r".format(self.forced_zeros()))
             
