@@ -105,7 +105,8 @@ def error_tracker(ge,true_val,block=1,eps_stop=5e-15,pr_bool=True):
         if pr_bool:
             print("#{:3d}: {:.16f}  error: {:.1e}  error bound: {:.1e}".format(st,val,val-true_val,eb))
     
-    print()
+    if pr_bool:
+        print()
     print("Plotting precision of iterative algorithm in terms of number of steps:")
     print("precision= nr of precise decimal digits= -log_10(error)")
     print("red points:  true precision")
