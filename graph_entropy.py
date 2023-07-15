@@ -295,7 +295,7 @@ class GraphEntropy:
                 if self.verbose_mode:
                     prefix="Conditional " if self.cond else ""
                     print(prefix+"Graph Entropy:")
-                    print("{} (error bound: {})".format(val,de))
+                    print("{} (error bound: {:.1e})".format(val,de))
                 return val,de
             #reactivating deleted sets that failed the optimality check
             self.re_activate(re_act)
