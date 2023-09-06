@@ -2,6 +2,7 @@ lbl_list=[chr(i) for i in range(ord('a'),ord('z')+1)]+[chr(i) for i in range(ord
 lbl_map={i:lbl_list[i] for i in range(len(lbl_list))}
 
 def grid(nr_x,nr_y):
+    """Draw a grid.""" 
     gr=Graphics()
     for x in range(nr_x+1):
         gr+=line([(x-0.5,1),(x-0.5,0.5-nr_y)],thickness=1,color='black')
@@ -10,6 +11,11 @@ def grid(nr_x,nr_y):
     return gr    
     
 def ge_visualize(ge,show_bool=True,grid_bool=True,bars_bool=True,entr_bool=True,use_amax=True):
+    """Draw a figure visualizing the optimal configuration for graph entropy.
+    
+    Rows of grid: active sets and their optimal weights (i..e, 'r' values).
+    Columns of grid: graph vertices/X values.
+    Bar chart: the optimal 'a' vector."""
     a=ge.a
     amax=np.max(a) if use_amax else 1.
     r=np.inner(ge.r,ge.py) if ge.cond else ge.r
@@ -77,6 +83,7 @@ def ge_visualize(ge,show_bool=True,grid_bool=True,bars_bool=True,entr_bool=True,
         return fig
 
 def plot_precision(errors,color='blue',step_size=1):
+    """"Plot the number of precise decimal digits for the given list of error values."""
     ps=min(20,ceil(500./len(errors)))
     precs=[-log(err)/log(10.) for err in errors]
     steps=[*range(step_size,step_size*(1+len(errors)),step_size)]
@@ -84,6 +91,9 @@ def plot_precision(errors,color='blue',step_size=1):
     return list_plot(pts,color=color,pointsize=ps)
 
 def error_tracker(ge,true_val,block=1,eps_stop=5e-15,pr_bool=True):
+    """Track the error of alternating optimization for (conditional) graph entropy.
+    
+    true_val: The precise value of graph entropy has to be known."""
     if pr_bool:
         print("Value and errors after every {} iteration(s):".format(block))
     st=0
